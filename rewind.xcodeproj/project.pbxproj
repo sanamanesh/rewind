@@ -146,11 +146,11 @@
 		BC9FF6952BD5B80A00B8E250 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				92E797012BD5BF89001EDD38 /* ContentView.swift */,
 				BC9FF6932BD5B7C800B8E250 /* CardView.swift */,
 				BC9FF6982BD5B87900B8E250 /* HomeView.swift */,
 				BC9FF69A2BD5BA0F00B8E250 /* MapView.swift */,
 				BC9FF69C2BD5BA3000B8E250 /* AddView.swift */,
-				92E797012BD5BF89001EDD38 /* ContentView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
