@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+class RewindViewModel: ObservableObject {
+    @Published var cards: [Card] = []
+
+}
