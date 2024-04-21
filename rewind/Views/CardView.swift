@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct CardView: View {
-    let card: Card
     @EnvironmentObject var rewindViewModel: RewindViewModel
 
     func formattedDate(time: Date) -> String {
@@ -33,9 +32,11 @@ struct CardView: View {
 }
 
 //#Preview {
-//    @StateObject var rewindViewModel: RewindViewModel
-//    
-//    CardView()
+//    @EnvironmentObject var rewindViewModel: RewindViewModel
+//    let testCard = Card(name: "Huntsman", date: Date(), description: "Wharton School", rating: 5)
+//
+//
+//    CardView(card: Card = testCard)
 //        .environmentObject(rewindViewModel)
 //}
 
