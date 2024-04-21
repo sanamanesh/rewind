@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CardView: View {
+    var card: Card
     @EnvironmentObject var rewindViewModel: RewindViewModel
 
     func formattedDate(time: Date) -> String {
