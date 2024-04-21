@@ -13,7 +13,7 @@ struct CardView: View {
 
     func formattedDate(time: Date) -> String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "MM/dd/yyyy, HH:mm"
+        formatter.dateFormat = "MM/dd/yyyy"
         return formatter.string(from: time)
     }
     
