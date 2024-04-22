@@ -13,7 +13,7 @@ struct HomeView: View {
         
         Text("Inside Home View!")
         
-        let testCard = Card(name: "Huntsman", date: Date(), description: "Wharton School", rating: 5)
+        let testCard = Card(name: "Huntsman", description: "Wharton School", rating: 5)
         
         Button("Test Card") {
             showingSheet = true // Toggle the boolean to show the sheet

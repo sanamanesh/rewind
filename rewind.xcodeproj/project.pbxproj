@@ -13,6 +13,7 @@
 		7781CF342BD5AF0200820D71 /* rewindTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7781CF332BD5AF0200820D71 /* rewindTests.swift */; };
 		7781CF3E2BD5AF0200820D71 /* rewindUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7781CF3D2BD5AF0200820D71 /* rewindUITests.swift */; };
 		7781CF402BD5AF0200820D71 /* rewindUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7781CF3F2BD5AF0200820D71 /* rewindUITestsLaunchTests.swift */; };
+		7781CF4D2BD7153700820D71 /* APICalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7781CF4C2BD7153700820D71 /* APICalls.swift */; };
 		92E797022BD5BF89001EDD38 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E797012BD5BF89001EDD38 /* ContentView.swift */; };
 		BC9FF6942BD5B7C800B8E250 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9FF6932BD5B7C800B8E250 /* CardView.swift */; };
 		BC9FF6992BD5B87900B8E250 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9FF6982BD5B87900B8E250 /* HomeView.swift */; };
@@ -50,6 +51,7 @@
 		7781CF392BD5AF0200820D71 /* rewindUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = rewindUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7781CF3D2BD5AF0200820D71 /* rewindUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rewindUITests.swift; sourceTree = "<group>"; };
 		7781CF3F2BD5AF0200820D71 /* rewindUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rewindUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		7781CF4C2BD7153700820D71 /* APICalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICalls.swift; sourceTree = "<group>"; };
 		92E797012BD5BF89001EDD38 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BC9FF6932BD5B7C800B8E250 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		BC9FF6982BD5B87900B8E250 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				BC9FF69E2BD5BBA400B8E250 /* RewindViewModel.swift */,
+				7781CF4C2BD7153700820D71 /* APICalls.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -310,6 +313,7 @@
 				92E797022BD5BF89001EDD38 /* ContentView.swift in Sources */,
 				BC9FF69F2BD5BBA400B8E250 /* RewindViewModel.swift in Sources */,
 				BC9FF6A12BD5BBC700B8E250 /* Location.swift in Sources */,
+				7781CF4D2BD7153700820D71 /* APICalls.swift in Sources */,
 				BC9FF6A32BD5BBD600B8E250 /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
