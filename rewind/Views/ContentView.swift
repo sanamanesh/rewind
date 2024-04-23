@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 struct ContentView : View {
+    @EnvironmentObject var rewindViewModel: RewindViewModel
     var body: some View {
         TabView {
             HomeView()

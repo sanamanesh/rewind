@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct HomeView: View {
+    @EnvironmentObject var rewindViewModel: RewindViewModel
     @State private var showingSheet = false
+    
     var body: some View {
         
         Text("Inside Home View!")

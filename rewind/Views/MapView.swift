@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct MapView: View {
+    @EnvironmentObject var rewindViewModel: RewindViewModel
+
     var body: some View {
         Text("Inside Map View!")
     }

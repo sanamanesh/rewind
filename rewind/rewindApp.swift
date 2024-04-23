@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct rewindApp: App {
+    @StateObject var rewindViewModel = RewindViewModel()
+
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(rewindViewModel)
         }
     }
 }

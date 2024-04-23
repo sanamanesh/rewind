@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AddView: View {
+    @EnvironmentObject var rewindViewModel: RewindViewModel
     @State private var placeName = ""
     @State private var location = ""
     @State private var rating = 0
@@ -24,11 +25,15 @@ struct AddView: View {
         ScrollView{
             
             VStack {
-                Text("Add a new experience to your Rewind!")
-                    .font(.title)
-                    .bold()
-                    .foregroundColor(darkGreenColor)
-                    .padding(.vertical, 4)
+                HStack {
+                     // Pushes the content towards center
+                    Text("Add a new experience to your Rewind!")
+                        .font(.title)
+                        .bold()
+                        .foregroundColor(darkGreenColor)
+                        .padding(.vertical, 4)
+                    Spacer() // Pushes the content towards center
+                }
                 
                 HStack {
                     Text("Where did you go?")
@@ -52,21 +57,24 @@ struct AddView: View {
                         .frame(maxWidth: .infinity) // This ensures the TextField uses the available space
 
                     Button(action: {
-                        // Submit button action
-                        // Implement the logic to fetch or use the entered location
+                        Task {
+                            await rewindViewModel.updateCurrLoc(currLocString: location)
+                        }
                     }) {
                         Image(systemName: "arrow.right.circle.fill")
                             .foregroundColor(redColor)
                             .font(.title)
                     }
                 }
-                HStack{
-                    Text("Location not fetched yet")
-                        .font(.caption)
-                        .foregroundColor(yellowGreenColor)
-                        .padding(.leading, 20)
-                    Spacer()
-                }
+                
+//                HStack{
+//                    Text("Location not fetched yet")
+//                        .font(.caption)
+//                        .foregroundColor(yellowGreenColor)
+//                        .padding(.leading, 20)
+//                    Spacer()
+//                }
+                
                 HStack {
                     Text("How would you rate it out of 5?")
                         .font(.headline)
