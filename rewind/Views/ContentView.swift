@@ -28,6 +28,25 @@ struct ContentView : View {
     }
 }
 
+//// Dummy Views for demonstration
+//struct HomeTestView: View {
+//    var body: some View {
+//        Text("Home View")
+//    }
+//}
+//
+//struct AddTestView: View {
+//    var body: some View {
+//        Text("Add View")
+//    }
+//}
+//
+//struct MapTestView: View {
+//    var body: some View {
+//        Text("Map View")
+//    }
+//}
+
 #Preview {
     ContentView()
 }

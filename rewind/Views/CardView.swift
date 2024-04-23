@@ -23,7 +23,7 @@ struct CardView: View {
                 .font(.largeTitle)
                 .padding(.top, 20)
             
-            var time = formattedDate(time: card.date)
+            let time = formattedDate(time: card.date)
             Text("From: \(time)")
             
             Text(card.description)

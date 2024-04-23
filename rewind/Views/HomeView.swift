@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct HomeView: View {
+    init(){
+        print("HomeView initialized")
+    }
     @EnvironmentObject var rewindViewModel: RewindViewModel
     @State private var showingSheet = false
     

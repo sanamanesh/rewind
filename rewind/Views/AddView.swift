@@ -13,6 +13,7 @@ struct AddView: View {
     @State private var location = ""
     @State private var rating = 0
     @State private var description = ""
+    @State private var cardDate = Date()
     
     // Define color constants
         let backgroundColor = Color(red: 242/255, green: 232/255, blue: 207/255)
@@ -103,23 +104,19 @@ struct AddView: View {
                 
                 HStack {
                     Spacer()  // This pushes everything after it to the right
-                    Button(action: {
-                        // Add button action
-                        // Here you can implement the logic to add the data to your model or database
-                        // For example, you can create a Place object with the entered data and save it
-                    }) {
-                        Label("Finish", systemImage: "checkmark")
-                            .font(.headline)
-                            .foregroundColor(.white)
-                            .padding()
-                            .background(redColor)  // Ensure background is applied before cornerRadius
-                            .cornerRadius(10)
+                    Button("Finish") {
+                        cardDate = Date()  // Set the date to the current moment right before saving
+                        let locationObj = rewindViewModel.loc  // Optional, handle nil case as necessary
+                        rewindViewModel.addCard(name: placeName, date: cardDate, description: description, rating: rating, location: locationObj)
+                    }
+                    .padding()
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
                     }
                     .padding()  // Adds padding around the button to ensure it's not right against the screen edge
                 }
             }
-
-        }
         //.ignoresSafeArea()
         .padding()
         .background(backgroundColor.opacity(0.5))
@@ -147,6 +144,7 @@ struct RatingView: View {
     }
 }
 
-#Preview {
-    AddView()
-}
+//
+//#Preview {
+//    AddView()
+//}
