@@ -1,5 +1,5 @@
 //
-//  PopupView.swift
+//  SuccessPopupView.swift
 //  rewind
 //
 //  Created by Nandini Swami on 4/24/24.
