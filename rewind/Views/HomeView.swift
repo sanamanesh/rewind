@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @EnvironmentObject var rewindViewModel: RewindViewModel
-    @State private var showingSheet = false
+    @State var currCard: Card?
     
     let columns = [
         GridItem(.flexible()),
@@ -40,16 +40,19 @@ struct HomeView: View {
                                 .cornerRadius(10) // Rounded corners for card
                                 .shadow(radius: 5) // Subtle shadow for depth
                                 .onTapGesture {
-                                    showingSheet = true
+                                    currCard = card
                                 }
-                                .sheet(isPresented: $showingSheet, content: {
-                                    // Detail view or expanded card view could go here
-                                    PopupView(card: card)
+                                
+                        }
+                        
+                    }
+                    .sheet(item: $currCard, content: {
+                        card in
+                        // Detail view or expanded card view could go here
+                        PopupView(card: card)
 //                                    Text("Details for \(card.name)")
 //                                        .foregroundColor(darkGreenColor) // Applying the color theme
-                                })
-                        }
-                    }
+                    })
                     .padding()
                 }
                 .navigationTitle("rewind")
