@@ -11,7 +11,7 @@ struct Card : Identifiable {
     var id: String { "\(name)" }
     var name: String
     var date = Date()
-    var location: Location?
+    var location: Coord?
     var description: String
     var rating: Int
 }

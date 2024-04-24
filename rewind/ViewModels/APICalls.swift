@@ -48,8 +48,9 @@ class APICalls {
     //api key: AIzaSyA0XfyxOfpCZqrwhKWHee7bbcdib6Z8CIE
 
     func getPlaceCoordinates(storeName: String, completion: @escaping (Result<Coord, Error>) -> Void) {
-        var cityName = "Philadelphia"
-        var apiKey = "AIzaSyA0XfyxOfpCZqrwhKWHee7bbcdib6Z8CIE"
+        let cityName = "Philadelphia"
+        let apiKey = "AIzaSyA0XfyxOfpCZqrwhKWHee7bbcdib6Z8CIE"
+        
         // Encode the store name and city name for URL
         guard let encodedStoreName = storeName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
               let encodedCityName = cityName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
@@ -58,7 +59,8 @@ class APICalls {
         }
         
         // Construct the API request URL with the 'geometry' parameter
-        let urlString = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=\(encodedStoreName)+\(encodedCityName)&key=\(apiKey)&fields=name,geometry"
+        let urlString = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=\(encodedStoreName)+\(encodedCityName)&key=\(apiKey)&fields=name,geometry,formatted_address"
+        
         guard let url = URL(string: urlString) else {
             completion(.failure(NSError(domain: "URLError", code: -1, userInfo: nil)))
             return
@@ -77,7 +79,8 @@ class APICalls {
                 if let results = json?["results"] as? [[String: Any]], let firstResult = results.first {
                     if let geometry = firstResult["geometry"] as? [String: Any], let location = geometry["location"] as? [String: Any] {
                         if let latitude = location["lat"] as? Double, let longitude = location["lng"] as? Double {
-                            let coord = Coord(lat: latitude, lng: longitude)
+                            let address = firstResult["formatted_address"] as? String ?? ""
+                            let coord = Coord(addr: address, lat: latitude, lng: longitude)
                             completion(.success(coord))
                         } else {
                             completion(.failure(NSError(domain: "ParsingError", code: -1, userInfo: nil)))
@@ -95,62 +98,5 @@ class APICalls {
         
         task.resume()
     }
-
-//    // Usage example
-//    let apiKey = "YOUR_API_KEY"
-//    getPlaceCoordinates(storeName: "Store Name", cityName: "City Name", apiKey: apiKey) { result in
-//        switch result {
-//        case .success(let coord):
-//            print("Latitude: \(coord.lat), Longitude: \(coord.lng)")
-//        case .failure(let error):
-//            print("Error:", error)
-//        }
-//    }
-
-
-//    
-//    func getAddressForPlace(storeName: String) {
-//        var cityName = "Philadelphia"
-//        var apiKey = "AIzaSyA0XfyxOfpCZqrwhKWHee7bbcdib6Z8CIE"
-//        // Encode the store name and city name for URL
-//        guard let encodedStoreName = storeName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
-//              let encodedCityName = cityName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
-//            print("Error encoding store name or city name")
-//            return
-//        }
-//        
-//        // Construct the API request URL
-//        let urlString = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=\(encodedStoreName)+\(encodedCityName)&key=\(apiKey)"
-//        guard let url = URL(string: urlString) else {
-//            print("Error constructing URL")
-//            return
-//        }
-//        
-//        // Perform the API request
-//        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-//            guard let data = data, error == nil else {
-//                print("Error fetching data:", error?.localizedDescription ?? "Unknown error")
-//                return
-//            }
-//            
-//            do {
-//                // Parse the JSON response
-//                let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-//                if let results = json?["results"] as? [[String: Any]], let firstResult = results.first {
-//                    if let address = firstResult["formatted_address"] as? String {
-//                        print("Address of \(storeName) in \(cityName): \(address)")
-//                    } else {
-//                        print("Address not found")
-//                    }
-//                } else {
-//                    print("No results found")
-//                }
-//            } catch {
-//                print("Error parsing JSON:", error.localizedDescription)
-//            }
-//        }
-//        
-//        task.resume()
-//    }
 
 }
