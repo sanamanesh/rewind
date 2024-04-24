@@ -19,7 +19,7 @@ class RewindViewModel: ObservableObject {
     
     //update to deal with an address of a place
     func updateCurrLoc(currLocString: String) async {
-        print("1")
+        print("updating currLoc")
         
         locString = currLocString
         do {
@@ -32,10 +32,11 @@ class RewindViewModel: ObservableObject {
         }
     }
     
-    func addCard(name: String, date: Date, description: String, rating: Int, location: Location?) {
-        let newCard = Card(name: name, date: date, location: location, description: description, rating: rating)
+    func addCard(name: String, description: String, rating: Int, location: Location?) {
+        let newCard = Card(name: name, location: location, description: description, rating: rating)
         DispatchQueue.main.async {
             self.cards.append(newCard)
         }
+        
     }
 }

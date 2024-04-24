@@ -8,9 +8,6 @@
 import SwiftUI
 
 struct HomeView: View {
-    init(){
-        print("HomeView initialized")
-    }
     @EnvironmentObject var rewindViewModel: RewindViewModel
     @State private var showingSheet = false
     
@@ -29,7 +26,6 @@ struct HomeView: View {
         .sheet(isPresented: $showingSheet) { // Use the boolean state directly
             CardView(card: testCard) // Pass the instance of Card directly
         }
-        
     }
 }
 
