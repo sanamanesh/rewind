@@ -30,9 +30,11 @@ class RewindViewModel: ObservableObject {
                 print("LOCATION - Error or nil result from API call")
             }
         }
+        print("set the current location to \(String(describing: loc))")
     }
     
     func addCard(name: String, description: String, rating: Int, location: Location?) {
+        print("made it to adding a card")
         let newCard = Card(name: name, location: location, description: description, rating: rating)
         DispatchQueue.main.async {
             self.cards.append(newCard)
