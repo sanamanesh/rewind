@@ -50,3 +50,21 @@ struct Address: Codable {
     let country: String?
     let country_code: String?
 }
+
+//struct Place: Hashable, Identifiable, Codable {
+//    let result: Result
+//}
+//
+//struct Result: Codable {
+//    let formatted_address: String?
+//    let geometry: Geometry?
+//}
+//
+//struct Geometry: Codable {
+//    let location: Coord?
+//}
+
+struct Coord: Codable {
+    let lat: Double
+    let lng: Double
+}
