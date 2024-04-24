@@ -6,16 +6,64 @@
 //
 
 import Foundation
+import Combine
+import CoreLocation
 
-class RewindViewModel: ObservableObject {
+class RewindViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var cards: [Card] = []
     @Published var loc: Location?
     @Published var locString: String = ""
+    
+    
+    // location variables
+    private var locationManager = CLLocationManager()
+    private var isRequestingLocation = false
+    @Published var currentLocation: CLLocation?
+    
+    override init() {
+        super.init()
+        locationManager.delegate = self
+        switch locationManager.authorizationStatus {
+        case .authorizedWhenInUse, .authorizedAlways:
+            requestLocation()
+        default:
+            locationManager.requestWhenInUseAuthorization()
+        }
+    }
+    
+    // function that requests the user location
+    func requestLocation() {
+        if !isRequestingLocation {
+            isRequestingLocation = true
+            locationManager.requestLocation()
+            print("test request location 1")
+        }
+    print("test location 2")
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.last else {
+            isRequestingLocation = false
+            return
+        }
+            
+        self.currentLocation = location
+        isRequestingLocation = false
+    }
+    
+    // manages the location of the user
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        isRequestingLocation = false
+        print("Failed to get location: \(error)")
+    }
+    
     
 //    init(){
 //        let testCard = Card(name: "Huntsman", date: Date(), description: "Wharton School", rating: 5)
 //        cards.append(testCard)
 //    }
+    
+    
     
     //update to deal with an address of a place
     func updateCurrLoc(currLocString: String) async {

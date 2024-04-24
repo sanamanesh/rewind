@@ -18,7 +18,7 @@ struct MapView: View {
             UserAnnotation() // displays current location of user on the map
             
             // fake location
-            Annotation("My Fake Location", coordinate: .userLocation) {
+            Annotation("Philadelphia", coordinate: .userLocation) {
                 ZStack {
                     Circle()
                         .frame(width: 32, height: 32)
@@ -36,6 +36,7 @@ struct MapView: View {
             MapCompass()
             MapPitchToggle()
             MapUserLocationButton()
+            MapScaleView()
         }
     }
 }
