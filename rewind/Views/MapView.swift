@@ -9,29 +9,29 @@ import SwiftUI
 import MapKit
 
 struct MapView: View {
+    @EnvironmentObject var rewindViewModel: RewindViewModel
     @State private var cameraPosition: MapCameraPosition = .region(.userRegion)
+    @State private var mapSelection: MKMapItem?
+    @State private var showDetails = false
     
     var body: some View {
-        Map(position: $cameraPosition) {
+        Map(position: $cameraPosition, selection: $mapSelection) {
             
             // we'll need user locaiton (permissions)
             UserAnnotation() // displays current location of user on the map
             
-            // fake location
-            Annotation("Philadelphia", coordinate: .userLocation) {
-                ZStack {
-                    Circle()
-                        .frame(width: 32, height: 32)
-                        .foregroundStyle(.blue.opacity(0.25))
-                    Circle()
-                        .frame(width: 20, height: 20)
-                        .foregroundStyle(.white)
-                    Circle()
-                        .frame(width: 12, height: 12)
-                        .foregroundStyle(.blue)
-                }
+            // for each card in our cards array, place a marker on the map
+            ForEach(rewindViewModel.cards) { card in
+                Marker(card.name, coordinate: CLLocationCoordinate2D(latitude: card.location?.lat ?? 39.952583, longitude: card.location?.lng ?? -75.165222))
             }
+                        
         }
+        .onChange(of: mapSelection, { oldValue, newValue in
+            
+        })
+        .sheet(isPresented: $showDetails, content: {
+            CardView(mapSelection: , show: )
+        })
         .mapControls {
             MapCompass()
             MapPitchToggle()
