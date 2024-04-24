@@ -44,8 +44,9 @@ struct HomeView: View {
                                 }
                                 .sheet(isPresented: $showingSheet) {
                                     // Detail view or expanded card view could go here
-                                    Text("Details for \(card.name)")
-                                        .foregroundColor(darkGreenColor) // Applying the color theme
+                                    PopupView(card: card)
+//                                    Text("Details for \(card.name)")
+//                                        .foregroundColor(darkGreenColor) // Applying the color theme
                                 }
                         }
                     }
