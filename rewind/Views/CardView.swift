@@ -34,6 +34,7 @@ struct CardView: View {
                     }
                     Text(formattedDate(time: card.date))
                         .font(.subheadline)
+                    
                     Text("Recap: \(card.description)")
                         .font(.caption)
                         .lineLimit(3)
