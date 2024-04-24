@@ -34,11 +34,16 @@ class RewindViewModel: ObservableObject {
     }
     
     func addCard(name: String, description: String, rating: Int, location: Location?) {
+        let location = loc;
         print("made it to adding a card")
         let newCard = Card(name: name, location: location, description: description, rating: rating)
         DispatchQueue.main.async {
             self.cards.append(newCard)
+            print(self.cards.count)
+            print("date: \(self.cards[0].date), description: \(self.cards[0].description), name: \(self.cards[0].name), loc name: \(String(describing: self.cards[0].location?.display_name))")
         }
+        
+        
         
     }
 }
