@@ -12,6 +12,7 @@ import CoreLocation
 class RewindViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var cards: [Card] = []
     @Published var loc: Coord?
+    @Published var locs: [Coord] = []
     @Published var locString: String = ""
     
     
@@ -77,9 +78,10 @@ class RewindViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
             try await apiCalls.getPlaceCoordinates(storeName: currLocString) { result in
                 switch result {
                 case .success(let coord):
-                    self.loc = coord
-                    print("Latitude: \(coord.lat), Longitude: \(coord.lng)")
-                    print("Address: \(coord.addr)")
+                    self.locs = coord
+                    print(self.locs.count)
+//                    print("Latitude: \(coord.lat), Longitude: \(coord.lng)")
+//                    print("Address: \(coord.addr)")
                 case .failure(let error):
                     print("Error:", error)
                 }

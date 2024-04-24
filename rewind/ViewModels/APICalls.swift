@@ -47,7 +47,7 @@ class APICalls {
     
     //api key: AIzaSyA0XfyxOfpCZqrwhKWHee7bbcdib6Z8CIE
 
-    func getPlaceCoordinates(storeName: String, completion: @escaping (Result<Coord, Error>) -> Void) {
+    func getPlaceCoordinates(storeName: String, completion: @escaping (Result<[Coord], Error>) -> Void) {
         let cityName = "Philadelphia"
         let apiKey = "AIzaSyA0XfyxOfpCZqrwhKWHee7bbcdib6Z8CIE"
         
@@ -76,18 +76,18 @@ class APICalls {
             do {
                 // Parse the JSON response
                 let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-                if let results = json?["results"] as? [[String: Any]], let firstResult = results.first {
-                    if let geometry = firstResult["geometry"] as? [String: Any], let location = geometry["location"] as? [String: Any] {
-                        if let latitude = location["lat"] as? Double, let longitude = location["lng"] as? Double {
-                            let address = firstResult["formatted_address"] as? String ?? ""
-                            let coord = Coord(addr: address, lat: latitude, lng: longitude)
-                            completion(.success(coord))
-                        } else {
-                            completion(.failure(NSError(domain: "ParsingError", code: -1, userInfo: nil)))
+                if let results = json?["results"] as? [[String: Any]] {
+                    var coords: [Coord] = []
+                    for result in results {
+                        if let geometry = result["geometry"] as? [String: Any], let location = geometry["location"] as? [String: Any] {
+                            if let latitude = location["lat"] as? Double, let longitude = location["lng"] as? Double {
+                                let address = result["formatted_address"] as? String ?? ""
+                                let coord = Coord(addr: address, lat: latitude, lng: longitude)
+                                coords.append(coord)
+                            }
                         }
-                    } else {
-                        completion(.failure(NSError(domain: "GeometryError", code: -1, userInfo: nil)))
                     }
+                    completion(.success(coords))
                 } else {
                     completion(.failure(NSError(domain: "NoResultsError", code: -1, userInfo: nil)))
                 }
@@ -98,5 +98,6 @@ class APICalls {
         
         task.resume()
     }
+
 
 }
