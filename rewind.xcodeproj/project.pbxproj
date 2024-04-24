@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		773E7DCA2BD9A10E00472309 /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773E7DC92BD9A10E00472309 /* PopupView.swift */; };
 		7781CF232BD5AEF600820D71 /* rewindApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7781CF222BD5AEF600820D71 /* rewindApp.swift */; };
 		7781CF272BD5AF0100820D71 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7781CF262BD5AF0100820D71 /* Assets.xcassets */; };
 		7781CF2A2BD5AF0100820D71 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7781CF292BD5AF0100820D71 /* Preview Assets.xcassets */; };
@@ -15,7 +16,6 @@
 		7781CF402BD5AF0200820D71 /* rewindUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7781CF3F2BD5AF0200820D71 /* rewindUITestsLaunchTests.swift */; };
 		7781CF4D2BD7153700820D71 /* APICalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7781CF4C2BD7153700820D71 /* APICalls.swift */; };
 		92E797022BD5BF89001EDD38 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E797012BD5BF89001EDD38 /* ContentView.swift */; };
-		92E7970A2BD990A0001EDD38 /* SuccessPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E797092BD990A0001EDD38 /* SuccessPopupView.swift */; };
 		BC9FF6942BD5B7C800B8E250 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9FF6932BD5B7C800B8E250 /* CardView.swift */; };
 		BC9FF6992BD5B87900B8E250 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9FF6982BD5B87900B8E250 /* HomeView.swift */; };
 		BC9FF69B2BD5BA0F00B8E250 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9FF69A2BD5BA0F00B8E250 /* MapView.swift */; };
@@ -43,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		773E7DC92BD9A10E00472309 /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
 		7781CF1F2BD5AEF600820D71 /* rewind.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rewind.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7781CF222BD5AEF600820D71 /* rewindApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rewindApp.swift; sourceTree = "<group>"; };
 		7781CF262BD5AF0100820D71 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -54,7 +55,6 @@
 		7781CF3F2BD5AF0200820D71 /* rewindUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rewindUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		7781CF4C2BD7153700820D71 /* APICalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICalls.swift; sourceTree = "<group>"; };
 		92E797012BD5BF89001EDD38 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		92E797092BD990A0001EDD38 /* SuccessPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessPopupView.swift; sourceTree = "<group>"; };
 		BC9FF6932BD5B7C800B8E250 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		BC9FF6982BD5B87900B8E250 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		BC9FF69A2BD5BA0F00B8E250 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
@@ -153,9 +153,9 @@
 				92E797012BD5BF89001EDD38 /* ContentView.swift */,
 				BC9FF6932BD5B7C800B8E250 /* CardView.swift */,
 				BC9FF6982BD5B87900B8E250 /* HomeView.swift */,
+				773E7DC92BD9A10E00472309 /* PopupView.swift */,
 				BC9FF69A2BD5BA0F00B8E250 /* MapView.swift */,
 				BC9FF69C2BD5BA3000B8E250 /* AddView.swift */,
-				92E797092BD990A0001EDD38 /* SuccessPopupView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -308,6 +308,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				773E7DCA2BD9A10E00472309 /* PopupView.swift in Sources */,
 				BC9FF6992BD5B87900B8E250 /* HomeView.swift in Sources */,
 				BC9FF69B2BD5BA0F00B8E250 /* MapView.swift in Sources */,
 				BC9FF69D2BD5BA3000B8E250 /* AddView.swift in Sources */,
@@ -317,7 +318,6 @@
 				BC9FF69F2BD5BBA400B8E250 /* RewindViewModel.swift in Sources */,
 				BC9FF6A12BD5BBC700B8E250 /* Location.swift in Sources */,
 				7781CF4D2BD7153700820D71 /* APICalls.swift in Sources */,
-				92E7970A2BD990A0001EDD38 /* SuccessPopupView.swift in Sources */,
 				BC9FF6A32BD5BBD600B8E250 /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

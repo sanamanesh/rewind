@@ -15,11 +15,6 @@ class RewindViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var locs: [Coord] = []
     @Published var locString: String = ""
     
-    init() {
-        loadCards()
-    }
-    
-    
     // location variables
     private var locationManager = CLLocationManager()
     private var isRequestingLocation = false
@@ -27,6 +22,7 @@ class RewindViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     override init() {
         super.init()
+        self.loadCards()
         locationManager.delegate = self
         switch locationManager.authorizationStatus {
         case .authorizedWhenInUse, .authorizedAlways:
