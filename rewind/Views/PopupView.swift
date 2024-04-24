@@ -25,7 +25,18 @@ struct PopupView: View {
     
     var body: some View {
         ScrollView {
-            
+            VStack {
+                HStack {
+                    Text("recall")
+                        .italic()
+                        .foregroundColor(lightGreenColor)
+                    Spacer()
+                }
+                
+                Text(card.name)
+                    .foregroundColor(darkGreenColor)
+                    .bold()
+            }
         }
     }
 }
