@@ -25,6 +25,8 @@ struct PopupView: View {
     
     var body: some View {
         ScrollView {
+            Spacer()
+            
             VStack {
                 HStack {
                     Text("recall")
