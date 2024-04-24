@@ -30,13 +30,20 @@ struct CardView: View {
                         Text(card.name)
                             .font(.headline)
                         Spacer()
-                        Text(formattedDate(time: card.date))
-                            .font(.subheadline)
+                        
                     }
-                    
+                    Text(formattedDate(time: card.date))
+                        .font(.subheadline)
                     Text("Recap: \(card.description)")
                         .font(.caption)
                         .lineLimit(3)
+                        .padding(.bottom, 5)
+                    HStack {
+                            ForEach(0..<5, id: \.self) { index in
+                                    Image(systemName: index < card.rating ? "star.fill" : "star")
+                                        .foregroundColor(index < card.rating ? .yellow : .gray)
+                                }
+                        }
                 }
                 .padding()
                 .background(Color.white)

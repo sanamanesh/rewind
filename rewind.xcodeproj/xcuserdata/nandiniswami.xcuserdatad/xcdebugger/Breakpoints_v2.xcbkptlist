@@ -3,4 +3,54 @@
    uuid = "39D2DF69-9701-42D3-A03B-7AE1E5C984A9"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B6717DD2-1757-4980-86CA-4F884A8376FE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "rewind/Views/HomeView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "13"
+            endingLineNumber = "13"
+            landmarkName = "HomeView"
+            landmarkType = "14">
+            <Locations>
+               <Location
+                  uuid = "B6717DD2-1757-4980-86CA-4F884A8376FE - 55fe586a8a76e7dd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "rewind.HomeView.init() -&gt; rewind.HomeView"
+                  moduleName = "rewind"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nandiniswami/Desktop/CIS1951/apps/rewind/rewind/Views/HomeView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "252">
+               </Location>
+               <Location
+                  uuid = "B6717DD2-1757-4980-86CA-4F884A8376FE - d14d78e36cca2a32"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "rewind.HomeView.init(rewindViewModel: SwiftUI.EnvironmentObject&lt;rewind.RewindViewModel&gt;) -&gt; rewind.HomeView"
+                  moduleName = "rewind"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nandiniswami/Desktop/CIS1951/apps/rewind/rewind/Views/HomeView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "116">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
