@@ -65,6 +65,7 @@ struct Address: Codable {
 //}
 
 struct Coord: Codable {
+    let addr: String
     let lat: Double
     let lng: Double
 }

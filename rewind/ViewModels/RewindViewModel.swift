@@ -31,6 +31,7 @@ class RewindViewModel: ObservableObject {
                 case .success(let coord):
                     self.loc = coord
                     print("Latitude: \(coord.lat), Longitude: \(coord.lng)")
+                    print("Address: \(coord.addr)")
                 case .failure(let error):
                     print("Error:", error)
                 }
