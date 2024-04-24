@@ -23,16 +23,26 @@ struct CardView: View {
     }
     
     var body: some View {
-        VStack {
-            Text("Recall \(card.name)!")
-                .font(.largeTitle)
-                .padding(.top, 20)
-            
-            let time = formattedDate(time: card.date)
-            Text("From: \(time)")
-            
-            Text(card.description)
-        }
+        VStack(alignment: .leading, spacing: 10) {
+                    HStack {
+                        Image(systemName: "pin.fill") // Placeholder for location pin icon
+                            .foregroundColor(.red)
+                        Text(card.name)
+                            .font(.headline)
+                        Spacer()
+                        Text(formattedDate(time: card.date))
+                            .font(.subheadline)
+                    }
+                    
+                    Text("Recap: \(card.description)")
+                        .font(.caption)
+                        .lineLimit(3)
+                }
+                .padding()
+                .background(Color.white)
+                .cornerRadius(8)
+                .shadow(radius: 3)
+                .frame(width: 150, height: 200) // Adjust the size as needed
     }
   
 }
