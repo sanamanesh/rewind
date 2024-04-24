@@ -67,7 +67,7 @@ class RewindViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     
     //update to deal with an address of a place
-    func updateCurrLoc(currLocString: String) async {
+    func updateCurrLocsArray(currLocString: String) async {
         print("updating currLoc")
         
         locString = currLocString
