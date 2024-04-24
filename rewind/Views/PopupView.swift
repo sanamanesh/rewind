@@ -16,7 +16,7 @@ struct PopupView: View {
     let yellowGreenColor = Color(red: 167/255, green: 201/255, blue: 87/255)
     let redColor = Color(red: 188/255, green: 71/255, blue: 73/255)
     @EnvironmentObject var rewindViewModel: RewindViewModel
-
+    
     func formattedDate(time: Date) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "MM/dd/yyyy"
@@ -29,14 +29,14 @@ struct PopupView: View {
         }
     }
 }
+    
+    //#Preview {
+    //    @EnvironmentObject var rewindViewModel: RewindViewModel
+    //    let testCard = Card(name: "Huntsman", date: Date(), description: "Wharton School", rating: 5)
+    //
+    //
+    //    CardView(card: Card = testCard)
+    //        .environmentObject(rewindViewModel)
+    //}
+    
 
-//#Preview {
-//    @EnvironmentObject var rewindViewModel: RewindViewModel
-//    let testCard = Card(name: "Huntsman", date: Date(), description: "Wharton School", rating: 5)
-//
-//
-//    CardView(card: Card = testCard)
-//        .environmentObject(rewindViewModel)
-//}
-
-             
