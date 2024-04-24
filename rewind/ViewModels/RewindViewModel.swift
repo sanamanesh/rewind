@@ -9,7 +9,7 @@ import Foundation
 import Combine
 import CoreLocation
 
-class RewindViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
+@MainActor class RewindViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var cards: [Card] = []
     @Published var loc: Coord?
     @Published var locs: [Coord] = []
@@ -43,19 +43,24 @@ class RewindViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.last else {
+        DispatchQueue.main.async { [self] in
+            guard let location = locations.last else {
+                isRequestingLocation = false
+                return
+            }
+                
+            self.currentLocation = location
             isRequestingLocation = false
-            return
         }
-            
-        self.currentLocation = location
-        isRequestingLocation = false
     }
     
     // manages the location of the user
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        isRequestingLocation = false
-        print("Failed to get location: \(error)")
+        DispatchQueue.main.async { [self] in
+            isRequestingLocation = false
+            print("Failed to get location: \(error)")
+        }
+        
     }
     
     
@@ -75,16 +80,16 @@ class RewindViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         let apiCalls = APICalls() // Create an instance of APICalls
             
         do {
-            try await apiCalls.getPlaceCoordinates(storeName: currLocString) { result in
-                switch result {
-                case .success(let coord):
-                    self.locs = coord
-                    print(self.locs.count)
-                    print(self.locs)
-//                    print("Latitude: \(coord.lat), Longitude: \(coord.lng)")
-//                    print("Address: \(coord.addr)")
-                case .failure(let error):
-                    print("Error:", error)
+            apiCalls.getPlaceCoordinates(storeName: currLocString) { result in
+                DispatchQueue.main.async {
+                    switch result {
+                    case .success(let coord):
+                        self.locs = coord
+                        print(self.locs.count)
+                        print(self.locs)
+                    case .failure(let error):
+                        print("Error:", error)
+                    }
                 }
             }
         } catch {
@@ -130,5 +135,13 @@ class RewindViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
                 print("Error loading locations: \(error)")
             }
         }
+    }
+    
+    func removeCard(id: UUID) {
+        if let index = cards.firstIndex(where: { $0.id == id }) {
+            cards.remove(at: index)
+        }
+        
+        saveCards()
     }
 }

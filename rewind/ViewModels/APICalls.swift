@@ -67,6 +67,9 @@ class APICalls {
         }
         
         // Perform the API request
+        //share.data
+        //takes in completein handler and calls this function when done
+        //.data works with async stuff
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard let data = data, error == nil else {
                 completion(.failure(error ?? NSError(domain: "UnknownError", code: -1, userInfo: nil)))

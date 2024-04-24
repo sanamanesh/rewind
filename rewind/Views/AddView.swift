@@ -65,15 +65,16 @@ struct AddView: View {
                             .background(backgroundColor)
                             .foregroundColor(darkGreenColor)
                             .overlay(
-                                                        RoundedRectangle(cornerRadius: 10)
-                                                            .stroke(darkGreenColor, lineWidth: 2)
-                                                    )
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(darkGreenColor, lineWidth: 2)
+                            )
                             .frame(maxWidth: .infinity) // This ensures the TextField uses the available space
                         
                         Button(action: {
                             Task {
+                                rewindViewModel.locs = []
                                 await rewindViewModel.updateCurrLocsArray(currLocString: location)
-                                showingLocationSuggestions = !rewindViewModel.locs.isEmpty
+                                showingLocationSuggestions = true
                             }
                         }) {
                             Image(systemName: "arrow.right.circle.fill")
@@ -82,23 +83,24 @@ struct AddView: View {
                         }
                     }
                     if showingLocationSuggestions {
-                                            // Dropdown list for location suggestions
-                                            VStack {
-                                                ForEach(rewindViewModel.locs, id: \.self) { loc in
-                                                    Button(action: {
-                                                        location = loc.addr // Set the text of the TextField to the selected location
-                                                        rewindViewModel.updateCurrLoc(currLocCoord: loc);                                showingLocationSuggestions = false // Hide the dropdown
-                                                    }) {
-                                                        Text(loc.addr)
-                                                            .foregroundColor(.primary)
-                                                            .padding()
-                                                    }
-                                                }
-                                            }
-                                            .background(Color.white)
-                                            .cornerRadius(10)
-                                            .shadow(radius: 3)
-                                        }
+                        // Dropdown list for location suggestions
+                        VStack {
+                            ForEach(rewindViewModel.locs, id: \.self) { loc in
+                                Button(action: {
+                                    location = loc.addr // Set the text of the TextField to the selected location
+                                    rewindViewModel.updateCurrLoc(currLocCoord: loc);                                
+                                    showingLocationSuggestions = false // Hide the dropdown
+                                }) {
+                                    Text(loc.addr)
+                                        .foregroundColor(.primary)
+                                        .padding()
+                                }
+                            }
+                        }
+                        .background(Color.white)
+                        .cornerRadius(10)
+                        .shadow(radius: 3)
+                    }
                     
                     HStack {
                         Text("How would you rate it out of 5?")
@@ -134,6 +136,8 @@ struct AddView: View {
                             rewindViewModel.addCard(name: placeName, description: description, rating: rating, location: locationObj)
                             showPopup = true
                             showingLocationSuggestions = false
+                            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+
                         }
                         .padding()
                         .background(redColor)
@@ -153,6 +157,9 @@ struct AddView: View {
                             )
                         }
                     }
+                    //focus modifier for keyboard
+                    //https://www.hackingwithswift.com/quick-start/swiftui/how-to-dismiss-the-keyboard-for-a-textfield
+                        //UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                 }
                 .padding()
                 //.background(backgroundColor.opacity(0.5))

@@ -8,7 +8,7 @@
 import Foundation
 
 struct Card : Identifiable, Codable {
-    var id: String { "\(name)" }
+    var id = UUID()
     var name: String
     var date = Date()
     var location: Coord?

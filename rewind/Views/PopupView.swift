@@ -25,48 +25,60 @@ struct PopupView: View {
     
     var body: some View {
         ScrollView {
-            ZStack {
-                backgroundColor.opacity(0.5) // Use your background color here
-                    .edgesIgnoringSafeArea(.all)
-                
-                VStack {
-                    Spacer(minLength: 50)
+//            backgroundColor.opacity(0.5) // Use your background color here
+//                .edgesIgnoringSafeArea(.all)
+            
+            VStack {
+//                    Spacer(minLength: 50)
 
-                    HStack {
-                        Text("recall")
-                            .italic()
-                            .foregroundColor(lightGreenColor)
-                            .font(.largeTitle)
-                            .padding(.leading, 15)
-                        Spacer()
-                    }
-                    
-                    Text(card.name)
-                        .foregroundColor(darkGreenColor)
-                        .bold()
-                        .font(.largeTitle)
-                        .padding(.bottom, 20)
-                    
-                    var time = formattedDate(time: card.date)
-                    Text("From: \(time)")
+                HStack {
+                    Text("recall")
+                        .italic()
                         .foregroundColor(lightGreenColor)
-                        .padding(.bottom, 20)
-                    
-                    HStack {
-                        ForEach(1...5, id: \.self) { number in
-                            Image(systemName: number <= card.rating ? "star.fill" : "star")
-                                .foregroundColor(number <= card.rating ? Color.yellow : Color.gray)
-                        }
-                    }
-                    .padding(.bottom, 20)
-
-                    Text("Description: \(card.description)")
-//                        .lineLimit(0) // or .lineLimit(0) for SwiftUI versions that support it
-
+                        .font(.largeTitle)
+                        .padding(.leading, 15)
+                    Spacer()
                 }
+                
+                Text(card.name)
+                    .foregroundColor(darkGreenColor)
+                    .bold()
+                    .font(.largeTitle)
+                    .padding(.bottom, 20)
+                
+                Text("Address: \(card.location!.addr)")
+                    .foregroundColor(lightGreenColor)
+                    .padding(.bottom, 20)
+                
+                let time = formattedDate(time: card.date)
+                Text("From: \(time)")
+                    .foregroundColor(lightGreenColor)
+                    .padding(.bottom, 20)
+                
+                HStack {
+                    ForEach(1...5, id: \.self) { number in
+                        Image(systemName: number <= card.rating ? "star.fill" : "star")
+                            .foregroundColor(number <= card.rating ? Color.yellow : Color.gray)
+                    }
+                }
+                .padding(.bottom, 20)
+
+                Text("Description: \(card.description)")
+                    .lineLimit(nil) // or .lineLimit(0) for SwiftUI versions that support it
+
             }
             
+            HStack {
+                Button(action: {
+                    // Call removeLocation method with the desired index
+                    rewindViewModel.removeCard(id: card.id)
+                }) {
+                    Text("Delete")
+                }
+                .padding()
+            }
         }
+        .background(backgroundColor.opacity(0.5))
     }
 }
     
