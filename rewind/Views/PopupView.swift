@@ -27,6 +27,7 @@ struct PopupView: View {
         ScrollView {
             
         }
+    }
 }
 
 //#Preview {

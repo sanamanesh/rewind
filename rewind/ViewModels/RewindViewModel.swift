@@ -80,6 +80,7 @@ class RewindViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
                 case .success(let coord):
                     self.locs = coord
                     print(self.locs.count)
+                    print(self.locs)
 //                    print("Latitude: \(coord.lat), Longitude: \(coord.lng)")
 //                    print("Address: \(coord.addr)")
                 case .failure(let error):
@@ -91,7 +92,7 @@ class RewindViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         }
     }
     
-    func updateCurrLocsArray(currLocCoord: Coord) {
+    func updateCurrLoc(currLocCoord: Coord) {
         self.loc = currLocCoord
     }
 

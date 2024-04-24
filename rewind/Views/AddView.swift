@@ -15,6 +15,7 @@ struct AddView: View {
     @State private var description = ""
     @State private var cardDate = Date()
     @State private var showPopup = false// State to control popup visibility
+    @State private var showingLocationSuggestions = false // To toggle the location suggestions dropdown
     
     
     
@@ -24,6 +25,7 @@ struct AddView: View {
     let lightGreenColor = Color(red: 106/255, green: 153/255, blue: 78/255)
     let yellowGreenColor = Color(red: 167/255, green: 201/255, blue: 87/255)
     let redColor = Color(red: 188/255, green: 71/255, blue: 73/255)
+    
     
     
     
@@ -62,11 +64,16 @@ struct AddView: View {
                             .padding()
                             .background(backgroundColor)
                             .foregroundColor(darkGreenColor)
+                            .overlay(
+                                                        RoundedRectangle(cornerRadius: 10)
+                                                            .stroke(darkGreenColor, lineWidth: 2)
+                                                    )
                             .frame(maxWidth: .infinity) // This ensures the TextField uses the available space
                         
                         Button(action: {
                             Task {
                                 await rewindViewModel.updateCurrLocsArray(currLocString: location)
+                                showingLocationSuggestions = !rewindViewModel.locs.isEmpty
                             }
                         }) {
                             Image(systemName: "arrow.right.circle.fill")
@@ -74,14 +81,24 @@ struct AddView: View {
                                 .font(.title)
                         }
                     }
-                    
-                    //                HStack{
-                    //                    Text("Location not fetched yet")
-                    //                        .font(.caption)
-                    //                        .foregroundColor(yellowGreenColor)
-                    //                        .padding(.leading, 20)
-                    //                    Spacer()
-                    //                }
+                    if showingLocationSuggestions {
+                                            // Dropdown list for location suggestions
+                                            VStack {
+                                                ForEach(rewindViewModel.locs, id: \.self) { loc in
+                                                    Button(action: {
+                                                        location = loc.addr // Set the text of the TextField to the selected location
+                                                        rewindViewModel.updateCurrLoc(currLocCoord: loc);                                showingLocationSuggestions = false // Hide the dropdown
+                                                    }) {
+                                                        Text(loc.addr)
+                                                            .foregroundColor(.primary)
+                                                            .padding()
+                                                    }
+                                                }
+                                            }
+                                            .background(Color.white)
+                                            .cornerRadius(10)
+                                            .shadow(radius: 3)
+                                        }
                     
                     HStack {
                         Text("How would you rate it out of 5?")
@@ -116,6 +133,7 @@ struct AddView: View {
                             let locationObj = rewindViewModel.loc  // Optional, handle nil case as necessary
                             rewindViewModel.addCard(name: placeName, description: description, rating: rating, location: locationObj)
                             showPopup = true
+                            showingLocationSuggestions = false
                         }
                         .padding()
                         .background(redColor)
