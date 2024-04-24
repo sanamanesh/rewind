@@ -42,12 +42,12 @@ struct HomeView: View {
                                 .onTapGesture {
                                     showingSheet = true
                                 }
-                                .sheet(isPresented: $showingSheet) {
+                                .sheet(isPresented: $showingSheet, content: {
                                     // Detail view or expanded card view could go here
                                     PopupView(card: card)
 //                                    Text("Details for \(card.name)")
 //                                        .foregroundColor(darkGreenColor) // Applying the color theme
-                                }
+                                })
                         }
                     }
                     .padding()
