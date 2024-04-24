@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Card : Identifiable {
+struct Card : Identifiable, Codable {
     var id: String { "\(name)" }
     var name: String
     var date = Date()

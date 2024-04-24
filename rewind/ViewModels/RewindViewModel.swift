@@ -15,6 +15,10 @@ class RewindViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var locs: [Coord] = []
     @Published var locString: String = ""
     
+    init() {
+        loadCards()
+    }
+    
     
     // location variables
     private var locationManager = CLLocationManager()
@@ -103,9 +107,31 @@ class RewindViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
             self.cards.append(newCard)
             print(self.cards.count)
             print("date: \(self.cards[0].date), description: \(self.cards[0].description), name: \(self.cards[0].name), lat: \(String(describing: self.cards[0].location?.lat)), long: \(String(describing: self.cards[0].location?.lng))")
+            self.saveCards()
         }
-        
-        
-        
+    }
+    
+    // Function to save locations array to UserDefaults
+    private func saveCards() {
+        do {
+            let encoder = JSONEncoder()
+            let data = try encoder.encode(cards)
+            UserDefaults.standard.set(data, forKey: "savedCards")
+        } catch {
+            print("Error saving locations: \(error.localizedDescription)")
+        }
+    }
+    
+    // Function to load locations array from UserDefaults
+    private func loadCards() {
+        if let data = UserDefaults.standard.data(forKey: "savedCards") {
+            do {
+                let decoder = JSONDecoder()
+                let savedCards = try decoder.decode([Card].self, from: data)
+                self.cards = savedCards
+            } catch {
+                print("Error loading locations: \(error)")
+            }
+        }
     }
 }
