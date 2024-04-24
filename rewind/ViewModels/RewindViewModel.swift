@@ -89,17 +89,12 @@ class RewindViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         } catch {
             print("Error:", error)
         }
-//        do {
-//            if let location = try? await APICalls.instance.getLocation(city: locString) {
-//                    self.loc = location.first
-//            } else {
-//                // Handle case where API call returns nil (or encounters an error)
-//                print("LOCATION - Error or nil result from API call")
-//            }
-//        }
-//        print("set the current location to \(String(describing: loc))")
     }
     
+    func updateCurrLocsArray(currLocCoord: Coord) {
+        self.loc = currLocCoord
+    }
+
     func addCard(name: String, description: String, rating: Int, location: Coord?) {
         let location = loc;
         print("made it to adding a card")
