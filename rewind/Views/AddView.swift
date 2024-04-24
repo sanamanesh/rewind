@@ -66,7 +66,7 @@ struct AddView: View {
                         
                         Button(action: {
                             Task {
-                                await rewindViewModel.updateCurrLoc(currLocString: location)
+                                await rewindViewModel.updateCurrLocsArray(currLocString: location)
                             }
                         }) {
                             Image(systemName: "arrow.right.circle.fill")

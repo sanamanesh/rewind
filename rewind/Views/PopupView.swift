@@ -24,36 +24,9 @@ struct PopupView: View {
     }
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-                    HStack {
-                        Image(systemName: "pin.fill") // Placeholder for location pin icon
-                            .foregroundColor(.red)
-                        Text(card.name)
-                            .font(.headline)
-                        Spacer()
-                        
-                    }
-                    Text(formattedDate(time: card.date))
-                        .font(.subheadline)
-                    
-                    Text("Recap: \(card.description)")
-                        .font(.caption)
-                        .lineLimit(3)
-                        .padding(.bottom, 5)
-                    HStack {
-                            ForEach(0..<5, id: \.self) { index in
-                                    Image(systemName: index < card.rating ? "star.fill" : "star")
-                                        .foregroundColor(index < card.rating ? .yellow : .gray)
-                                }
-                        }
-                }
-                .padding()
-                .background(Color.white)
-                .cornerRadius(8)
-                .shadow(radius: 3)
-                .frame(width: 150, height: 200) // Adjust the size as needed
-    }
-  
+        ScrollView {
+            
+        }
 }
 
 //#Preview {

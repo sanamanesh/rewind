@@ -64,7 +64,8 @@ struct Address: Codable {
 //    let location: Coord?
 //}
 
-struct Coord: Codable {
+struct Coord: Codable, Hashable {
+    var id: String { "\(lat),\(lng)" }
     let addr: String
     let lat: Double
     let lng: Double
