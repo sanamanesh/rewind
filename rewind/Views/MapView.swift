@@ -24,7 +24,13 @@ struct MapView: View {
             // for each card in our cards array, place a marker on the map
             ForEach(rewindViewModel.cards) { card in
                 Annotation(card.name, coordinate: CLLocationCoordinate2D(latitude: card.location?.lat ?? 39.952583, longitude: card.location?.lng ?? -75.165222)) {
-                    Circle()
+                    Image(systemName: "mappin.circle.fill") // Use a pin image from SF Symbols
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 18, height: 18) // Adjust the size as needed
+                                    .foregroundColor(.red) // Use your app's theme color here
+
+                                
                         .onTapGesture {
                             selectedCard = card
                             showDetails = true
@@ -62,6 +68,6 @@ extension MKCoordinateRegion {
     }
 }
 
-#Preview {
-    MapView()
-}
+//#Preview {
+//    MapView()
+//}
