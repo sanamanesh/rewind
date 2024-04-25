@@ -24,9 +24,6 @@ struct MapView: View {
     var body: some View {
         Map(position: $cameraPosition) {
             
-            // we'll need user locaiton (permissions)
-            UserAnnotation() // displays current location of user on the map
-            
             // for each card in our cards array, place a marker on the map
             ForEach(rewindViewModel.cards) { card in
                 Annotation(card.name, coordinate: CLLocationCoordinate2D(latitude: card.location?.lat ?? 39.952583, longitude: card.location?.lng ?? -75.165222)) {
@@ -52,7 +49,6 @@ struct MapView: View {
         .mapControls {
             MapCompass()
             MapPitchToggle()
-            MapUserLocationButton()
             MapScaleView()
         }
     }

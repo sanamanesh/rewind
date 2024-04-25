@@ -23,45 +23,8 @@ import CoreLocation
     override init() {
         super.init()
         self.loadCards()
-        locationManager.delegate = self
-        switch locationManager.authorizationStatus {
-        case .authorizedWhenInUse, .authorizedAlways:
-            requestLocation()
-        default:
-            locationManager.requestWhenInUseAuthorization()
-        }
     }
-    
-    // function that requests the user location
-    func requestLocation() {
-        if !isRequestingLocation {
-            isRequestingLocation = true
-            locationManager.requestLocation()
-            print("test request location 1")
-        }
-    print("test location 2")
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        DispatchQueue.main.async { [self] in
-            guard let location = locations.last else {
-                isRequestingLocation = false
-                return
-            }
-                
-            self.currentLocation = location
-            isRequestingLocation = false
-        }
-    }
-    
-    // manages the location of the user
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        DispatchQueue.main.async { [self] in
-            isRequestingLocation = false
-            print("Failed to get location: \(error)")
-        }
-        
-    }
+
     
     func updateCurrLocsArray(currLocString: String) async {
         print("updating currLoc")
