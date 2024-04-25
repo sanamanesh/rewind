@@ -156,6 +156,7 @@ struct AddView: View {
                         .background(backgroundColor)
                         .foregroundColor(darkGreenColor)
                         .cornerRadius(10)
+
                     
                     HStack {
                         Spacer()  // This pushes everything after it to the right
