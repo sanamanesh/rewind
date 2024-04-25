@@ -16,6 +16,8 @@ struct PopupView: View {
     let yellowGreenColor = Color(red: 167/255, green: 201/255, blue: 87/255)
     let redColor = Color(red: 188/255, green: 71/255, blue: 73/255)
     @EnvironmentObject var rewindViewModel: RewindViewModel
+    @Environment(\.presentationMode) var presentationMode
+
     
     func formattedDate(time: Date) -> String {
         let formatter = DateFormatter()
@@ -29,54 +31,81 @@ struct PopupView: View {
 //                .edgesIgnoringSafeArea(.all)
             
             VStack {
-//                    Spacer(minLength: 50)
+                VStack{
+                    Spacer(minLength: 40)
 
-                HStack {
-                    Text("recall")
-                        .italic()
-                        .foregroundColor(lightGreenColor)
+                    HStack {
+                        Text("recall")
+                            .italic()
+                            .foregroundColor(lightGreenColor)
+                            .font(.largeTitle)
+                            .padding(.leading, 15)
+                        Spacer()
+                    }
+                    
+                    Text(card.name)
+                        .foregroundColor(darkGreenColor)
+                        .bold()
                         .font(.largeTitle)
+                        .padding(.bottom, 20)
+                    
+                    
+                    Text("Address: \(card.location!.addr)")
+                        .foregroundColor(lightGreenColor)
+                        .padding(.bottom, 20)
+                    
+                    let time = formattedDate(time: card.date)
+                    
+                    HStack {
+                        Text("From: \(time)")
+                            .foregroundColor(lightGreenColor)
+                            .padding(.leading, 15)
+                            .padding(.bottom, 20)
+                        Spacer()
+                    }
+                    
+                    HStack{
+                        HStack {
+                            ForEach(1...5, id: \.self) { number in
+                                Image(systemName: number <= card.rating ? "star.fill" : "star")
+                                    .foregroundColor(number <= card.rating ? Color.yellow : Color.gray)
+                            }
+                        }
                         .padding(.leading, 15)
-                    Spacer()
-                }
-                
-                Text(card.name)
-                    .foregroundColor(darkGreenColor)
-                    .bold()
-                    .font(.largeTitle)
+                        Spacer()
+                    }
                     .padding(.bottom, 20)
-                
-                Text("Address: \(card.location!.addr)")
-                    .foregroundColor(lightGreenColor)
-                    .padding(.bottom, 20)
-                
-                let time = formattedDate(time: card.date)
-                Text("From: \(time)")
-                    .foregroundColor(lightGreenColor)
-                    .padding(.bottom, 20)
-                
-                HStack {
-                    ForEach(1...5, id: \.self) { number in
-                        Image(systemName: number <= card.rating ? "star.fill" : "star")
-                            .foregroundColor(number <= card.rating ? Color.yellow : Color.gray)
+                    
+                    HStack{
+                        Text("Description: \(card.description)")
+                            .lineLimit(nil) // or .lineLimit(0) for SwiftUI versions that support it
+                            .padding(.leading, 15)
+                        Spacer()
                     }
                 }
-                .padding(.bottom, 20)
+                
+                Spacer()
+                
+                HStack {
+                    Button(action: {
+                        // Show delete confirmation
+                        rewindViewModel.removeCard(id: card.id)
+                        
+                        presentationMode.wrappedValue.dismiss()
 
-                Text("Description: \(card.description)")
-                    .lineLimit(nil) // or .lineLimit(0) for SwiftUI versions that support it
-
+                    }) {
+                        Text("Delete")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                            .padding()
+                            .background(Color.red)
+                            .cornerRadius(10)
+                            .padding()
+                    }
+                }
             }
             
-            HStack {
-                Button(action: {
-                    // Call removeLocation method with the desired index
-                    rewindViewModel.removeCard(id: card.id)
-                }) {
-                    Text("Delete")
-                }
-                .padding()
-            }
+           
         }
         .background(backgroundColor.opacity(0.5))
     }
