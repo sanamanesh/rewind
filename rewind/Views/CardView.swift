@@ -24,50 +24,46 @@ struct CardView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-                    HStack {
-                        Image(systemName: "pin.fill") // Placeholder for location pin icon
-                            .foregroundColor(redColor)
-                        Text(card.name)
-                            .font(.headline)
-                            .foregroundColor(darkGreenColor)
-                            .lineLimit(nil)
-                            .minimumScaleFactor(0.9)
-                        Spacer()
-                        
-                    }
-                    //.padding(.leading, 10)
-                    .padding()
+            HStack {
+                Image(systemName: "pin.fill") // Placeholder for location pin icon
+                    .foregroundColor(redColor)
+                Text(card.name)
+                    .font(.headline)
+                    .foregroundColor(darkGreenColor)
+                    .lineLimit(nil)
+                    .minimumScaleFactor(0.9)
+                Spacer()
+                
+            }
+            //.padding(.leading, 10)
+            .padding()
+    
+            Text(formattedDate(time: card.date))
+                //.font(.subheadline)
+                .font(.subheadline)
+                .foregroundColor(lightGreenColor)
+                .padding(.leading, 10)
             
-                    Text(formattedDate(time: card.date))
-                        //.font(.subheadline)
-                        .font(.subheadline)
-                        .foregroundColor(lightGreenColor)
-                        .padding(.leading, 10)
-                    
-                    Text("Recap: \(card.description)")
-                        .font(.caption)
-                        .lineLimit(3)
-                        .foregroundColor(yellowGreenColor)
-                        .padding(.horizontal, 10)
-                        .padding(.bottom, 1)
-                    HStack {
-//                            ForEach(0..<5, id: \.self) { index in
-//                                    Image(systemName: index < card.rating ? "star.fill" : "star")
-//                                        .foregroundColor(index < card.rating ? .yellow : .gray)
-//                                }
-                        ForEach(0..<card.rating, id: \.self) { index in
-                                    Image(systemName: "star.fill")
-                                        .foregroundColor(.yellow)
-                                }
-                                ForEach(card.rating..<5, id: \.self) { index in
-                                    Image(systemName: "star")
-                                        .foregroundColor(.gray)
-                                }
-                        
+            Text("Recap: \(card.description)")
+                .font(.caption)
+                .lineLimit(3)
+                .foregroundColor(yellowGreenColor)
+                .padding(.horizontal, 10)
+                .padding(.bottom, 1)
+            HStack {
+                ForEach(0..<card.rating, id: \.self) { index in
+                            Image(systemName: "star.fill")
+                                .foregroundColor(.yellow)
                         }
-                    .padding()
-                    .padding(.top,0)
+                        ForEach(card.rating..<5, id: \.self) { index in
+                            Image(systemName: "star")
+                                .foregroundColor(.gray)
+                        }
+                
                 }
+            .padding()
+            .padding(.top,0)
+        }
         //.padding([.top, .horizontal])
         .background(Color.white) // Background should be set before cornerRadius
         .cornerRadius(20) // Now this will clip the background
@@ -75,14 +71,3 @@ struct CardView: View {
         .frame(width: 170, height: 250)
     }
 }
-
-//#Preview {
-//    @EnvironmentObject var rewindViewModel: RewindViewModel
-//    let testCard = Card(name: "Huntsman", date: Date(), description: "Wharton School", rating: 5)
-//
-//
-//    CardView(card: Card = testCard)
-//        .environmentObject(rewindViewModel)
-//}
-
-             

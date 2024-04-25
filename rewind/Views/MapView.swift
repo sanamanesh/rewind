@@ -30,11 +30,11 @@ struct MapView: View {
             // for each card in our cards array, place a marker on the map
             ForEach(rewindViewModel.cards) { card in
                 Annotation(card.name, coordinate: CLLocationCoordinate2D(latitude: card.location?.lat ?? 39.952583, longitude: card.location?.lng ?? -75.165222)) {
-                    Image(systemName: "mappin.circle.fill") // Use a pin image from SF Symbols
+                    Image(systemName: "mappin.circle.fill") //  pin image
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(width: 18, height: 18) // Adjust the size as needed
-                                    .foregroundColor(redColor) // Use your app's theme color here
+                                    .frame(width: 18, height: 18)
+                                    .foregroundColor(redColor) // app's theme color here
 
                                 
                         .onTapGesture {
@@ -58,7 +58,6 @@ struct MapView: View {
     }
 }
 
-// example of user location
 // eventual will use user permision to get the location of the user (homework 3 - dining hall)
 extension CLLocationCoordinate2D {
     static var userLocation: CLLocationCoordinate2D {
@@ -73,7 +72,3 @@ extension MKCoordinateRegion {
                     longitudinalMeters: 10000)
     }
 }
-
-//#Preview {
-//    MapView()
-//}

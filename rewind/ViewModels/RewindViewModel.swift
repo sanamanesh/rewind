@@ -63,15 +63,6 @@ import CoreLocation
         
     }
     
-    
-//    init(){
-//        let testCard = Card(name: "Huntsman", date: Date(), description: "Wharton School", rating: 5)
-//        cards.append(testCard)
-//    }
-    
-    
-    
-    //update to deal with an address of a place
     func updateCurrLocsArray(currLocString: String) async {
         print("updating currLoc")
         

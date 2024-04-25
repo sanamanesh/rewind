@@ -14,8 +14,8 @@ struct HomeView: View {
     let columns = [
         GridItem(.flexible()),
         GridItem(.flexible())
-        // Add more GridItems if you want more columns
     ]
+    
     // Define color constants
     let backgroundColor = Color(red: 242/255, green: 232/255, blue: 207/255)
     let darkGreenColor = Color(red: 56/255, green: 102/255, blue: 65/255)
@@ -34,10 +34,8 @@ struct HomeView: View {
                             Spacer()
                             Text("Rewind in")
                                 .font(.system(size: 28, weight: .bold, design: .default))
-                            //.font(.title)
-                            //.fontWeight(.bold)
                                 .foregroundColor(lightGreenColor)
-                                .padding(.top, 60) // Adjust this value to move your title down if necessary
+                                .padding(.top, 60)
                                 .padding(.horizontal)
                                 .lineLimit(2)
                                 .multilineTextAlignment(.leading)
@@ -48,7 +46,7 @@ struct HomeView: View {
                             Text("Philadelphia <3")
                                 .font(.system(size: 40, weight: .bold, design: .default))
                                 .foregroundColor(darkGreenColor)
-                                .padding(.top, 0) // Adjust this value to move your title down if necessary
+                                .padding(.top, 0)
                                 .padding(.horizontal)
                                 .lineLimit(2)
                                 .multilineTextAlignment(.leading)
@@ -69,14 +67,9 @@ struct HomeView: View {
                         card in PopupView(card: card) })
                     .padding()
                 }
-                //.navigationTitle("rewind")
             }
                 .background(backgroundColor) // Apply background color
         }
     }
         
 }
-
-//#Preview {
-//    HomeView()
-//}

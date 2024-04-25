@@ -18,7 +18,6 @@ struct PopupView: View {
     @EnvironmentObject var rewindViewModel: RewindViewModel
     @Environment(\.presentationMode) var presentationMode
 
-    
     func formattedDate(time: Date) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "MM/dd/yyyy"
@@ -27,7 +26,7 @@ struct PopupView: View {
     
     var body: some View {
         ZStack{
-            backgroundColor // Use your background color here
+            backgroundColor
                 .edgesIgnoringSafeArea(.all)
             ScrollView {
                 
@@ -60,7 +59,6 @@ struct PopupView: View {
                             }
                         }
                     }
-                    
                     
                     if let location = card.location {
                         Text("@ \(location.addr)")
@@ -104,18 +102,6 @@ struct PopupView: View {
                 }
                 .padding(.horizontal)
             }
-            //.background(backgroundColor.opacity(0.5))
         }
     }
 }
-    
-//    #Preview {
-//        @EnvironmentObject var rewindViewModel: RewindViewModel
-//        let testCard = Card(name: "Huntsman", date: Date(), description: "Wharton School", rating: 5)
-//    
-//    
-//        CardView(card: Card = testCard)
-//            .environmentObject(rewindViewModel)
-//    }
-    
-
