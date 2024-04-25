@@ -12,26 +12,31 @@ struct MapView: View {
     @EnvironmentObject var rewindViewModel: RewindViewModel
     @State private var cameraPosition: MapCameraPosition = .region(.userRegion)
     @State private var mapSelection: MKMapItem?
+    @State private var selectedCard: Card?
     @State private var showDetails = false
     
     var body: some View {
-        Map(position: $cameraPosition, selection: $mapSelection) {
+        Map(position: $cameraPosition) {
             
             // we'll need user locaiton (permissions)
             UserAnnotation() // displays current location of user on the map
             
             // for each card in our cards array, place a marker on the map
             ForEach(rewindViewModel.cards) { card in
-                Marker(card.name, coordinate: CLLocationCoordinate2D(latitude: card.location?.lat ?? 39.952583, longitude: card.location?.lng ?? -75.165222))
+                Annotation(card.name, coordinate: CLLocationCoordinate2D(latitude: card.location?.lat ?? 39.952583, longitude: card.location?.lng ?? -75.165222)) {
+                    Circle()
+                        .onTapGesture {
+                            selectedCard = card
+                            showDetails = true
+                        }
+                }
             }
                         
         }
-        .onChange(of: mapSelection, { oldValue, newValue in
-            
-        })
-        .sheet(isPresented: $showDetails, content: {
-            CardView(mapSelection: , show: )
-        })
+        .sheet(item: $selectedCard, content: {
+                card in
+                PopupView(card: card)
+            })
         .mapControls {
             MapCompass()
             MapPitchToggle()
