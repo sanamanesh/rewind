@@ -53,8 +53,9 @@ struct HomeView: View {
                             Spacer()
                         }
                     }
+                    let reversedCards = rewindViewModel.cards.reversed()
                     LazyVGrid(columns: columns, spacing: 1) {
-                        ForEach(rewindViewModel.cards) { card in
+                        ForEach(reversedCards) { card in
                             CardView(card: card)
                                 .shadow(radius: 5) // Subtle shadow for depth
                                 .onTapGesture {
