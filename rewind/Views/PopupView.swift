@@ -26,88 +26,86 @@ struct PopupView: View {
     }
     
     var body: some View {
-        ScrollView {
-//            backgroundColor.opacity(0.5) // Use your background color here
-//                .edgesIgnoringSafeArea(.all)
-            
-            VStack {
-                VStack{
-                    Spacer(minLength: 40)
-
-                    HStack {
-                        Text("recall")
-                            .italic()
-                            .foregroundColor(lightGreenColor)
-                            .font(.largeTitle)
-                            .padding(.leading, 15)
-                        Spacer()
-                    }
-                    
-                    Text(card.name)
-                        .foregroundColor(darkGreenColor)
-                        .bold()
-                        .font(.largeTitle)
-                        .padding(.bottom, 20)
-                    
-                    
-                    Text("Address: \(card.location!.addr)")
+        ZStack{
+            backgroundColor // Use your background color here
+                .edgesIgnoringSafeArea(.all)
+            ScrollView {
+                
+                
+                VStack (alignment: .leading, spacing: 20){
+                    Text("Recall...")
+                        .italic()
                         .foregroundColor(lightGreenColor)
-                        .padding(.bottom, 20)
-                    
-                    let time = formattedDate(time: card.date)
-                    
+                        .font(.title)
+                        .padding(.top, 40)
                     HStack {
-                        Text("From: \(time)")
-                            .foregroundColor(lightGreenColor)
-                            .padding(.leading, 15)
-                            .padding(.bottom, 20)
+                        Spacer()
+                        Text("\(card.name) <3")
+                            .font(.system(size: 40, weight: .bold, design: .default))
+                            .foregroundColor(redColor)
+                            .fontWeight(.semibold)
                         Spacer()
                     }
-                    
+                    Spacer()
                     HStack{
+                        Text("Date: \(formattedDate(time: card.date))")
+                            .foregroundColor(darkGreenColor)
+                            .font(.headline)
+                            //.fontWeight(.headline)
+                        Spacer()
                         HStack {
                             ForEach(1...5, id: \.self) { number in
                                 Image(systemName: number <= card.rating ? "star.fill" : "star")
-                                    .foregroundColor(number <= card.rating ? Color.yellow : Color.gray)
+                                    .foregroundColor(number <= card.rating ? .yellow : Color.gray)
                             }
                         }
-                        .padding(.leading, 15)
-                        Spacer()
                     }
-                    .padding(.bottom, 20)
                     
-                    HStack{
-                        Text("Description: \(card.description)")
-                            .lineLimit(nil) // or .lineLimit(0) for SwiftUI versions that support it
-                            .padding(.leading, 15)
-                        Spacer()
+                    
+                    if let location = card.location {
+                        Text("@ \(location.addr)")
+                            .foregroundColor(darkGreenColor)
+                            .font(.subheadline)
                     }
-                }
-                
-                Spacer()
-                
-                HStack {
+                    
+                    Text("Description:")
+                        .foregroundColor(darkGreenColor)
+                        .font(.headline)
+                        .padding(.top, 5)
+                    
+                    Text(card.description)
+                        .foregroundColor(lightGreenColor)
+                        .font(.body)
+                        .lineLimit(nil)
+                    
+                    Spacer()
+                    
                     Button(action: {
                         // Show delete confirmation
                         rewindViewModel.removeCard(id: card.id)
-                        
                         presentationMode.wrappedValue.dismiss()
-
                     }) {
-                        Text("Delete")
-                            .font(.headline)
-                            .foregroundColor(.white)
-                            .padding()
-                            .background(Color.red)
-                            .cornerRadius(8)
-                            .padding()
+                        HStack {
+                            Image(systemName: "trash")
+                            Text("Delete")
+                        }
+                        .font(.subheadline)
+                        .foregroundColor(lightGreenColor)
+                        .padding(.vertical, 10)
+                        .padding(.horizontal, 20)
+                        .background(backgroundColor)
+                        .cornerRadius(10)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(lightGreenColor, lineWidth: 1)
+                        )
                     }
+                    .padding(.bottom, 30)
                 }
+                .padding(.horizontal)
             }
-            
-           
+            //.background(backgroundColor.opacity(0.5))
         }
-        .background(backgroundColor.opacity(0.5))
     }
 }
     

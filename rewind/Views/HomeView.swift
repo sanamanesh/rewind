@@ -16,7 +16,6 @@ struct HomeView: View {
         GridItem(.flexible())
         // Add more GridItems if you want more columns
     ]
-    
     // Define color constants
     let backgroundColor = Color(red: 242/255, green: 232/255, blue: 207/255)
     let darkGreenColor = Color(red: 56/255, green: 102/255, blue: 65/255)
@@ -27,37 +26,52 @@ struct HomeView: View {
     var body: some View {
             NavigationView {
                 ZStack {
-                    backgroundColor.opacity(0.5) // Use your background color here
+                    backgroundColor // Use your background color here
                         .edgesIgnoringSafeArea(.all)
                 ScrollView {
+                    VStack(alignment: .leading, spacing: 0) {
+                        HStack{
+                            Spacer()
+                            Text("Rewind in")
+                                .font(.system(size: 28, weight: .bold, design: .default))
+                            //.font(.title)
+                            //.fontWeight(.bold)
+                                .foregroundColor(lightGreenColor)
+                                .padding(.top, 60) // Adjust this value to move your title down if necessary
+                                .padding(.horizontal)
+                                .lineLimit(2)
+                                .multilineTextAlignment(.leading)
+                            Spacer()
+                        }
+                        HStack{
+                            Spacer()
+                            Text("Philadelphia <3")
+                                .font(.system(size: 40, weight: .bold, design: .default))
+                                .foregroundColor(darkGreenColor)
+                                .padding(.top, 0) // Adjust this value to move your title down if necessary
+                                .padding(.horizontal)
+                                .lineLimit(2)
+                                .multilineTextAlignment(.leading)
+                            Spacer()
+                        }
+                    }
                     LazyVGrid(columns: columns, spacing: 1) {
                         ForEach(rewindViewModel.cards) { card in
                             CardView(card: card)
-                            //                                    .onTapGesture {
-                            //                                        // Here you can define what happens when a card is tapped.
-                            //                                        // For example, you can set showingSheet to true and show details in a sheet.
-                            //                                    }
-                                //.cornerRadius(10) // Rounded corners for card
                                 .shadow(radius: 5) // Subtle shadow for depth
                                 .onTapGesture {
                                     currCard = card
-                                }
-                                
+                            }
                         }
                         
                     }
                     .sheet(item: $currCard, content: {
-                        card in
-                        // Detail view or expanded card view could go here
-                        PopupView(card: card)
-//                                    Text("Details for \(card.name)")
-//                                        .foregroundColor(darkGreenColor) // Applying the color theme
-                    })
+                        card in PopupView(card: card) })
                     .padding()
                 }
-                .navigationTitle("rewind")
+                //.navigationTitle("rewind")
             }
-            .background(backgroundColor) // Apply background color
+                .background(backgroundColor) // Apply background color
         }
     }
         

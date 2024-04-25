@@ -30,6 +30,8 @@ struct CardView: View {
                         Text(card.name)
                             .font(.headline)
                             .foregroundColor(darkGreenColor)
+                            .lineLimit(nil)
+                            .minimumScaleFactor(0.9)
                         Spacer()
                         
                     }

@@ -16,6 +16,7 @@ struct AddView: View {
     @State private var cardDate = Date()
     @State private var showPopup = false// State to control popup visibility
     @State private var showingLocationSuggestions = false // To toggle the location suggestions dropdown
+    @State private var locationSaved = false //location saved
     
     
     
@@ -31,7 +32,7 @@ struct AddView: View {
     
     var body: some View {
         ZStack{
-            backgroundColor.opacity(0.5) // Use your background color here
+            backgroundColor // Use your background color here
                 .edgesIgnoringSafeArea(.all)
             ScrollView{
                 VStack {
@@ -45,12 +46,15 @@ struct AddView: View {
                         Spacer() // Pushes the content towards center
                     }
                     
+                    Spacer()
+                    
                     HStack {
                         Text("Where did you go?")
                             .font(.headline)
                             .foregroundColor(lightGreenColor)
                             .padding(.vertical, 4)
                         Spacer()
+                        
                     }
                     
                     TextField("Enter the name of the place", text: $placeName)
@@ -61,14 +65,31 @@ struct AddView: View {
                             RoundedRectangle(cornerRadius: 10)
                                 .stroke(darkGreenColor, lineWidth: 2)
                         )
+                        .cornerRadius(10)
                     
                     
+                    HStack {
+                        Text("Enter location:")
+                            .font(.headline)
+                            .foregroundColor(lightGreenColor)
+                            .padding(.vertical, 4)
+                        Spacer()
+                        
+                    }
                     HStack(spacing: 10) {
                         TextField("Enter location", text: $location)
                             .padding()
                             .background(backgroundColor)
                             .foregroundColor(darkGreenColor)
                             .frame(maxWidth: .infinity) // This ensures the TextField uses the available space
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(darkGreenColor, lineWidth: 2)
+                            )
+                            .cornerRadius(10)
+                            
+
+                        Spacer()
                         
                         Button(action: {
                             Task {
@@ -77,9 +98,15 @@ struct AddView: View {
                                 showingLocationSuggestions = true
                             }
                         }) {
-                            Image(systemName: "arrow.right.circle.fill")
-                                .foregroundColor(redColor)
-                                .font(.title)
+                            if(locationSaved){
+                                Image(systemName: "checkmark.circle.fill")
+                                    .foregroundColor(redColor)
+                                    .font(.title)
+                            } else {
+                                Image(systemName: "arrow.right.circle.fill")
+                                    .foregroundColor(redColor)
+                                    .font(.title)
+                            }
                         }
                     }
                     if showingLocationSuggestions {
@@ -90,9 +117,10 @@ struct AddView: View {
                                     location = loc.addr // Set the text of the TextField to the selected location
                                     rewindViewModel.updateCurrLoc(currLocCoord: loc);                                
                                     showingLocationSuggestions = false // Hide the dropdown
+                                    locationSaved = true
                                 }) {
                                     Text(loc.addr)
-                                        .foregroundColor(.primary)
+                                        .foregroundColor(redColor)
                                         .padding()
                                 }
                             }
@@ -114,6 +142,7 @@ struct AddView: View {
                     Stepper(value: $rating, in: 0...5) {
                         RatingView(rating: $rating)
                     }
+                    .padding(.bottom, 10)
                     
                     
                     Text("Describe your experience:")
@@ -126,16 +155,17 @@ struct AddView: View {
                         .padding()
                         .background(backgroundColor)
                         .foregroundColor(darkGreenColor)
-                    
+                        .cornerRadius(10)
                     
                     HStack {
                         Spacer()  // This pushes everything after it to the right
-                        Button("Finish") {
+                        Button("Finish + Add") {
                             cardDate = Date()  // Set the date to the current moment right before saving
                             let locationObj = rewindViewModel.loc  // Optional, handle nil case as necessary
                             rewindViewModel.addCard(name: placeName, description: description, rating: rating, location: locationObj)
                             showPopup = true
                             showingLocationSuggestions = false
+                            locationSaved = false
                             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
 
                         }

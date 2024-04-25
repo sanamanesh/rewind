@@ -15,6 +15,12 @@ struct MapView: View {
     @State private var selectedCard: Card?
     @State private var showDetails = false
     
+    let backgroundColor = Color(red: 242/255, green: 232/255, blue: 207/255)
+    let darkGreenColor = Color(red: 56/255, green: 102/255, blue: 65/255)
+    let lightGreenColor = Color(red: 106/255, green: 153/255, blue: 78/255)
+    let yellowGreenColor = Color(red: 167/255, green: 201/255, blue: 87/255)
+    let redColor = Color(red: 188/255, green: 71/255, blue: 73/255)
+    
     var body: some View {
         Map(position: $cameraPosition) {
             
@@ -28,7 +34,7 @@ struct MapView: View {
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width: 18, height: 18) // Adjust the size as needed
-                                    .foregroundColor(.red) // Use your app's theme color here
+                                    .foregroundColor(redColor) // Use your app's theme color here
 
                                 
                         .onTapGesture {
