@@ -23,36 +23,55 @@ struct CardView: View {
     }
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
+        VStack(alignment: .leading, spacing: 12) {
                     HStack {
                         Image(systemName: "pin.fill") // Placeholder for location pin icon
-                            .foregroundColor(.red)
+                            .foregroundColor(redColor)
                         Text(card.name)
                             .font(.headline)
+                            .foregroundColor(darkGreenColor)
                         Spacer()
                         
                     }
+                    //.padding(.leading, 10)
+                    .padding()
+            
                     Text(formattedDate(time: card.date))
+                        //.font(.subheadline)
                         .font(.subheadline)
+                        .foregroundColor(lightGreenColor)
+                        .padding(.leading, 10)
                     
                     Text("Recap: \(card.description)")
                         .font(.caption)
                         .lineLimit(3)
-                        .padding(.bottom, 5)
+                        .foregroundColor(yellowGreenColor)
+                        .padding(.horizontal, 10)
+                        .padding(.bottom, 1)
                     HStack {
-                            ForEach(0..<5, id: \.self) { index in
-                                    Image(systemName: index < card.rating ? "star.fill" : "star")
-                                        .foregroundColor(index < card.rating ? .yellow : .gray)
+//                            ForEach(0..<5, id: \.self) { index in
+//                                    Image(systemName: index < card.rating ? "star.fill" : "star")
+//                                        .foregroundColor(index < card.rating ? .yellow : .gray)
+//                                }
+                        ForEach(0..<card.rating, id: \.self) { index in
+                                    Image(systemName: "star.fill")
+                                        .foregroundColor(.yellow)
                                 }
+                                ForEach(card.rating..<5, id: \.self) { index in
+                                    Image(systemName: "star")
+                                        .foregroundColor(.gray)
+                                }
+                        
                         }
+                    .padding()
+                    .padding(.top,0)
                 }
-                .padding()
-                .background(Color.white)
-                .cornerRadius(8)
-                .shadow(radius: 3)
-                .frame(width: 150, height: 200) // Adjust the size as needed
+        //.padding([.top, .horizontal])
+        .background(Color.white) // Background should be set before cornerRadius
+        .cornerRadius(20) // Now this will clip the background
+        .shadow(radius: 3) // Shadow should be applied after cornerRadius
+        .frame(width: 170, height: 250)
     }
-  
 }
 
 //#Preview {

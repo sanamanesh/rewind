@@ -57,6 +57,10 @@ struct AddView: View {
                         .padding()
                         .background(backgroundColor)
                         .foregroundColor(darkGreenColor)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(darkGreenColor, lineWidth: 2)
+                        )
                     
                     
                     HStack(spacing: 10) {
@@ -64,10 +68,6 @@ struct AddView: View {
                             .padding()
                             .background(backgroundColor)
                             .foregroundColor(darkGreenColor)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 10)
-                                    .stroke(darkGreenColor, lineWidth: 2)
-                            )
                             .frame(maxWidth: .infinity) // This ensures the TextField uses the available space
                         
                         Button(action: {

@@ -30,14 +30,14 @@ struct HomeView: View {
                     backgroundColor.opacity(0.5) // Use your background color here
                         .edgesIgnoringSafeArea(.all)
                 ScrollView {
-                    LazyVGrid(columns: columns, spacing: 20) {
+                    LazyVGrid(columns: columns, spacing: 1) {
                         ForEach(rewindViewModel.cards) { card in
                             CardView(card: card)
                             //                                    .onTapGesture {
                             //                                        // Here you can define what happens when a card is tapped.
                             //                                        // For example, you can set showingSheet to true and show details in a sheet.
                             //                                    }
-                                .cornerRadius(10) // Rounded corners for card
+                                //.cornerRadius(10) // Rounded corners for card
                                 .shadow(radius: 5) // Subtle shadow for depth
                                 .onTapGesture {
                                     currCard = card

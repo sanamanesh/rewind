@@ -99,7 +99,7 @@ struct PopupView: View {
                             .foregroundColor(.white)
                             .padding()
                             .background(Color.red)
-                            .cornerRadius(10)
+                            .cornerRadius(8)
                             .padding()
                     }
                 }
@@ -111,13 +111,13 @@ struct PopupView: View {
     }
 }
     
-    //#Preview {
-    //    @EnvironmentObject var rewindViewModel: RewindViewModel
-    //    let testCard = Card(name: "Huntsman", date: Date(), description: "Wharton School", rating: 5)
-    //
-    //
-    //    CardView(card: Card = testCard)
-    //        .environmentObject(rewindViewModel)
-    //}
+//    #Preview {
+//        @EnvironmentObject var rewindViewModel: RewindViewModel
+//        let testCard = Card(name: "Huntsman", date: Date(), description: "Wharton School", rating: 5)
+//    
+//    
+//        CardView(card: Card = testCard)
+//            .environmentObject(rewindViewModel)
+//    }
     
 
