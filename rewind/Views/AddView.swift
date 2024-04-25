@@ -118,6 +118,7 @@ struct AddView: View {
                                     rewindViewModel.updateCurrLoc(currLocCoord: loc);                                
                                     showingLocationSuggestions = false // Hide the dropdown
                                     locationSaved = true
+                                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                                 }) {
                                     Text(loc.addr)
                                         .foregroundColor(redColor)
