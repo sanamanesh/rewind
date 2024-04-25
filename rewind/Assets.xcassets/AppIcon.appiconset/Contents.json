@@ -1,11 +1,7 @@
 {
   "images" : [
     {
-<<<<<<< HEAD
       "filename" : "Screenshot 2024-04-25 at 11.35.59 AM.png",
-=======
-      "filename" : "rewindIcon.jpg",
->>>>>>> c9b90c7dff260d814c366fd7fc96dd5fcf275be5
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"
