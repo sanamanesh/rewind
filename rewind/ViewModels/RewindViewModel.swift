@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 import CoreLocation
+import MapKit
 
 @MainActor class RewindViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var cards: [Card] = []
@@ -144,4 +145,23 @@ import CoreLocation
         
         saveCards()
     }
+    
+    // Function to convert Card to MKMapItem
+    func convertCardToMKMapItem(card: Card) -> MKMapItem? {
+        guard let location = card.location else {
+            return nil
+        }
+
+        let coordinate = CLLocationCoordinate2D(latitude: location.lat, longitude: location.lng)
+        let placemark = MKPlacemark(coordinate: coordinate, addressDictionary: nil)
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = card.name
+
+        return mapItem
+    }
+
+      // Function to convert all cards to MKMapItem array
+      var mapItems: [MKMapItem] {
+        cards.compactMap { convertCardToMKMapItem(card: $0) }
+      }
 }
